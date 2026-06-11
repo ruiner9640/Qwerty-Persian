@@ -18,4 +18,5 @@ All Letters and vowels now map the keys nicely with the exception of the w key w
 Some letters are repeated because of their dual purpose of consonant and vowel like و ی ه
 
 All symbols and numbers are combined from default Persian (Farsi) and standard Persian (Farsi), only "?" is missing from the keyboard which is useless for a right to left script and making it cyclable would make spamming it annoying
+
 <img width="1377" height="464" alt="qwerty persian 0 2" src="https://github.com/user-attachments/assets/05cfa945-5d83-4697-8cb1-6aaa6949f0e5" />

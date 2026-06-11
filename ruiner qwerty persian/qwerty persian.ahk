@@ -1,6 +1,7 @@
 #Requires AutoHotkey v2.0
 SendMode "Input"
 SetWorkingDir A_ScriptDir
+ProcessSetPriority "High"
 
 global g_t9Timeout := 400
 global g_persianLayoutId := 0xF03A0429
@@ -9,11 +10,11 @@ global g_lastKey := ""
 global g_pressCount := 0
 
 global g_lower := Map(
-    "q", ["ق", "غ"],
+    "q", ["ق"],
     "w", ["ا"],
     "e", ["ِ"],
     "r", ["ر"],
-    "t", ["ت", "ط"],
+    "t", ["ت"],
     "y", ["ی"],
     "u", ["و"],
     "i", ["ی"],
@@ -24,7 +25,7 @@ global g_lower := Map(
     "d", ["د"],
     "f", ["ف"],
     "g", ["گ"],
-    "h", ["ه", "ح"],
+    "h", ["ه"],
     "j", ["ج"],
     "k", ["ک"],
     "l", ["ل"],
@@ -38,11 +39,11 @@ global g_lower := Map(
 )
 
 global g_upper := Map(
-    "q", ["ق"],
+    "q", ["غ"],
     "w", ["آ"],
     "e", ["ه"],
     "r", ["ر"],
-    "t", ["ت"],
+    "t", ["ط"],
     "y", ["ی"],
     "u", ["و"],
     "i", ["ـ"],
@@ -53,7 +54,7 @@ global g_upper := Map(
     "d", ["د"],
     "f", ["ف"],
     "g", ["گ"],
-    "h", ["ه"],
+    "h", ["ح"],
     "j", ["ژ"],
     "k", ["ک"],
     "l", ["ل"],
@@ -99,12 +100,12 @@ g_upper["5"] := ["%", "٪"]
 g_upper["6"] := ["^", "×"]
 g_upper["7"] := ["&", "،"]
 g_upper["8"] := ["*"]
-g_upper["9"] := ["("]
-g_upper["0"] := [")"]
+g_upper["9"] := ["(", ")"]
+g_upper["0"] := [")", "("]
 g_upper["-"] := ["_"]
 g_upper["="] := ["+"]
-g_upper["["] := ["{"]
-g_upper["]"] := ["}"]
+g_upper["["] := ["{", "}"]
+g_upper["]"] := ["}", "{"]
 g_upper["\"] := ["|"]
 g_upper[";"] := [":"]
 g_upper["'"] := [Chr(34), "؛"]
@@ -162,9 +163,15 @@ HandleKey(keyName, isShift) {
 
 IsPersianActive() {
     global g_persianLayoutId
-    threadId := DllCall("GetWindowThreadProcessId", "Ptr", WinActive("A"), "UInt", 0)
+    static lastHwnd := 0, lastResult := false
+    hwnd := WinActive("A")
+    if (hwnd = lastHwnd)
+        return lastResult
+    lastHwnd := hwnd
+    threadId := DllCall("GetWindowThreadProcessId", "Ptr", hwnd, "UInt", 0)
     curLayout := DllCall("GetKeyboardLayout", "UInt", threadId)
-    return (curLayout & 0xFFFFFFFF) = g_persianLayoutId
+    lastResult := (curLayout & 0xFFFFFFFF) = g_persianLayoutId
+    return lastResult
 }
 
 #HotIf IsPersianActive()

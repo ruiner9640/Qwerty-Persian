@@ -1,10 +1,9 @@
 # Qwerty-Persian
 AutoHotkey Script to turn your Persian (Farsi) keyboard into a more phonetic keyboard with true qwerty layout
 
-#Note that this uses "standard Persian (Farsi)" keyboard layout by default as that is the usual secondary keyboard for Iranians,
-If you want to use this for the default Persian (Farsi) keyboard change the "global g_persianLayoutId :=" from 0xF03A0429 to 0x04290429
+#To run the script just double click on the .exe file or the .ahk script if you have AutoHotkey installed, turn the layout On and Off with Ctrl + Shift + F12
 
-#To run the script just double click on the .exe file or the .ahk script if you have AutoHotkey installed, If you want to run it at windows start press Win + R type shell:startup and paste the .exe or the .ahk file's shortcut there
+#If you want to run it at windows start press Win + R type shell:startup and paste the .exe or the .ahk file's shortcut there
 
 Worked on this for a couple of hours, I thought it turned out pretty well
 

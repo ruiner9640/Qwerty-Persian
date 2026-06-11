@@ -9,12 +9,12 @@ Worked on this for a couple of hours, I thought it turned out pretty well
 
 I reused some of the logic of another script I made for 9key keyboard layouts
 
-Persian having a bunch of letters that made the same sound like four "z" letters made it hard to make an actual qwerty keyboard layout for it
+Persian having a bunch of letters that make the same sounds like four "z" letters makes it hard for a true qwerty layout to work on it
 
-Now all the duplicate sounds are cyclable letters kinda like the 9key keyboards
+All the redundant letters are cyclable like 9key keyboards for this reason
 
-All Letters and vowels map the keys nicely with the exception of the w key which is assigned to "aleph", persian doesn't have a w sound and I didn't know where else to put ا and آ
+All Letters and vowels now map the keys nicely with the exception of the w key which is assigned to aleph and glottal stop letters ع أ since persian doesn't have a w sound
 
 Some letters are repeated because of their dual purpose of consonant and vowel like و ی ه
 
-Numbers, symbols and all those stuff are all combined from default Persian (Farsi) and standard Persian (Farsi), only "?" is missing from the keyboard which is useless for a right to left script and making it cyclable would make spamming it annoying
+All symbols and numbers are combined from default Persian (Farsi) and standard Persian (Farsi), only "?" is missing from the keyboard which is useless for a right to left script and making it cyclable would make spamming it annoying

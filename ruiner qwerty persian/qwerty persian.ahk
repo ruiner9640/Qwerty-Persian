@@ -69,7 +69,7 @@ global g_upper := Map(
 
 backtick := Chr(96)
 
-g_lower[backtick] := [backtick, "÷"]
+g_lower[backtick] := [backtick, "×"]
 g_lower["1"] := ["1", "۱"]
 g_lower["2"] := ["2", "۲"]
 g_lower["3"] := ["3", "۳"]
@@ -91,13 +91,13 @@ g_lower[","] := [","]
 g_lower["."] := ["."]
 g_lower["/"] := ["/"]
 
-g_upper[backtick] := ["~", "×"]
+g_upper[backtick] := ["~", "÷"]
 g_upper["1"] := ["!"]
 g_upper["2"] := ["@", "٬"]
 g_upper["3"] := ["#", "٫"]
 g_upper["4"] := ["$", "ریال"]
 g_upper["5"] := ["%", "٪"]
-g_upper["6"] := ["^", "×"]
+g_upper["6"] := ["^"]
 g_upper["7"] := ["&", "،"]
 g_upper["8"] := ["*"]
 g_upper["9"] := ["("]

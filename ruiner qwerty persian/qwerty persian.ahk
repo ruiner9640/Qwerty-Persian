@@ -4,10 +4,18 @@ SetWorkingDir A_ScriptDir
 ProcessSetPriority "High"
 
 global g_t9Timeout := 400
-global g_persianLayoutId := 0xF03A0429
+global g_enabled := true
+global g_isPersian := false
 
 global g_lastKey := ""
 global g_pressCount := 0
+
+^+F12:: {
+    global g_enabled
+    g_enabled := !g_enabled
+    ToolTip "Persian T9: " (g_enabled ? "ON" : "OFF")
+    SetTimer () => ToolTip(), -1000
+}
 
 global g_lower := Map(
     "q", ["ق"],
@@ -44,12 +52,12 @@ global g_upper := Map(
     "e", ["ه"],
     "r", ["ر"],
     "t", ["ط"],
-    "y", ["ی"],
+    "y", ["ئ"],
     "u", ["و"],
     "i", ["ـ"],
     "o", ["و"],
     "p", ["پ"],
-    "a", ["ع", "ئ"],
+    "a", ["ع"],
     "s", ["ش"],
     "d", ["د"],
     "f", ["ف"],
@@ -61,8 +69,8 @@ global g_upper := Map(
     "z", ["ض", "ظ"],
     "x", ["خ"],
     "c", ["چ"],
-    "v", ["‌"],
-    "b", ["ب"],
+    "v", ["ؤ"],
+    "b", ["‌"],
     "n", ["ن"],
     "m", ["م"]
 )
@@ -161,20 +169,30 @@ HandleKey(keyName, isShift) {
     Critical "Off"
 }
 
-IsPersianActive() {
-    global g_persianLayoutId
-    static lastHwnd := 0, lastResult := false
+CheckPersianLayout() {
+    global g_isPersian
     hwnd := WinActive("A")
-    if (hwnd = lastHwnd)
-        return lastResult
-    lastHwnd := hwnd
+    if !hwnd {
+        g_isPersian := false
+        return
+    }
     threadId := DllCall("GetWindowThreadProcessId", "Ptr", hwnd, "UInt", 0)
-    curLayout := DllCall("GetKeyboardLayout", "UInt", threadId)
-    lastResult := (curLayout & 0xFFFFFFFF) = g_persianLayoutId
-    return lastResult
+    if !threadId {
+        g_isPersian := false
+        return
+    }
+    curLayout := DllCall("GetKeyboardLayout", "UInt", threadId, "Ptr")
+    g_isPersian := (curLayout & 0xFFFF) = 0x0429
 }
 
-#HotIf IsPersianActive()
+IsActive() {
+    global g_enabled, g_isPersian
+    return g_enabled && g_isPersian
+}
+
+SetTimer CheckPersianLayout, 300
+
+#HotIf IsActive()
 
 $SC010:: HandleKey("q", false)
 $SC011:: HandleKey("w", false)

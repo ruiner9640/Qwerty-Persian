@@ -19,4 +19,4 @@ Some letters are repeated because of their dual purpose of consonant and vowel l
 
 All symbols and numbers are combined from default Persian (Farsi) and standard Persian (Farsi), only "?" is missing from the keyboard which is useless for a right to left script and making it cyclable would make spamming it annoying
 
-<img width="1563" height="579" alt="qwerty persian 0 2" src="https://github.com/user-attachments/assets/c57b8b10-0572-42f2-b692-27ec59a3593e" />
+<img width="1545" height="572" alt="图片" src="https://github.com/user-attachments/assets/cf66b5cf-e0e2-48c9-8b81-73814e6f6f83" />
